@@ -32,7 +32,15 @@ export class UsersService {
 
    }
 
-  // create a user
+  /**
+   * create the user
+   */
+   createUser(user: User):Observable<User> {
+    return this.http.post(`${this.userUrl}/users`, user)
+      .map(res => res.json())
+      .catch( this.handleError );
+   }
+
 
   /**
    * update the user
