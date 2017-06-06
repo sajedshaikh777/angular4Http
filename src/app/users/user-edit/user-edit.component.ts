@@ -11,6 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 export class UserEditComponent implements OnInit {
 
   user: User;
+  successMessage: string = '';
+  errorMessage: string = '';
 
   constructor(private service: UsersService, private route: ActivatedRoute) { }
 
@@ -25,10 +27,22 @@ export class UserEditComponent implements OnInit {
    * update the user
    */
    updateUser(){
+     this.successMessage = '';
+     this.errorMessage = '';
      this.service.updateUser(this.user)
-      .subscribe(user => {
+      .subscribe(
+        user => {
+        this.successMessage = 'User was updated.';
         console.log('User was updated.');
-      });
+      },
+      err => {
+        // For custom error messgae
+        this.errorMessage = 'User could not be updated.';
+        // For server error message 
+        // this.errorMessage = err;
+        console.error(err);
+      }
+      );
    }
 
 }

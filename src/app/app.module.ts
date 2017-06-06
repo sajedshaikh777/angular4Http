@@ -10,6 +10,8 @@ import { UsersService } from './shared/services/users.service';
 
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+
 import { UsersComponent } from './users/users.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';

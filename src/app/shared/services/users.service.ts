@@ -39,6 +39,8 @@ export class UsersService {
    */
   updateUser(user: User):  Observable<User>{
     return this.http.put(`${this.userUrl}/${user.id}`, user)
+    // To generate an error
+    // return this.http.get(`${this.userUrl}/23`)
       .map(res => res.json())
       .catch( this.handleError );
 
@@ -69,7 +71,7 @@ export class UsersService {
     if (err instanceof Response) {
       let body = err.json() || '';
       let error = body.error || JSON.stringify(body);
-      errMessage = `${err.status} - ${err.statusText} || '' } ${error}`;
+      errMessage = `${err.status} - ${err.statusText || '' } ${error}`;
     } else {
       errMessage = err.message ? err.message : err.toString();
     }
